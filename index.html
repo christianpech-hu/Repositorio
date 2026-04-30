@@ -13,6 +13,7 @@ body {
   color: white;
 }
 
+/* HEADER */
 header {
   text-align: center;
   padding: 30px;
@@ -20,53 +21,75 @@ header {
   font-weight: bold;
   background: rgba(255,255,255,0.05);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
+/* FOTO PERFIL */
+#btn-info {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1000;
+  border: 2px solid #22c55e;
+}
+
+#btn-info img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CONTENEDOR */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 40px 20px;
 }
 
+/* GRID */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
 }
 
+/* TARJETAS */
 .project {
   background: rgba(255,255,255,0.05);
   border-radius: 15px;
   padding: 20px;
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  transition: all 0.3s ease;
-}
-
-.project:hover {
-  transform: translateY(-8px) scale(1.02);
+  text-align: center;
 }
 
 .project h2 { color: #60a5fa; }
 .project p { color: #cbd5f5; }
-.project ul { color: #a5b4fc; }
 
+/* IMÁGENES */
 .project-img {
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px;
   margin-top: 12px;
   cursor: pointer;
-  transition: 0.3s;
+  background: #0f172a;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.project-img:hover { transform: scale(1.05); }
-
+/* BOTONES */
 .btn {
   display: inline-block;
   margin-top: 12px;
+  margin-right: 8px;
   padding: 10px 14px;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: white;
@@ -74,8 +97,6 @@ header {
   text-decoration: none;
   font-weight: bold;
 }
-
-.btn:hover { transform: scale(1.05); }
 
 /* LIGHTBOX */
 .lightbox {
@@ -87,93 +108,83 @@ header {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(8px);
+
+  align-items: center;
+  justify-content: center;
 }
 
-.lightbox-img {
-  display: block;
-  margin: 60px auto;
+.lightbox-contenido {
   max-width: 90%;
-  max-height: 80%;
-  border-radius: 12px;
+  max-height: 85%;
 }
 
+.lightbox img,
+.lightbox video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* CONTROLES */
 .cerrar {
   position: absolute;
   top: 20px;
-  right: 40px;
-  font-size: 40px;
+  right: 30px;
+  font-size: 35px;
   cursor: pointer;
 }
 
 .prev, .next {
   position: absolute;
   top: 50%;
-  font-size: 40px;
+  font-size: 35px;
   cursor: pointer;
-  padding: 10px;
 }
 
 .prev { left: 20px; }
 .next { right: 20px; }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 12px;
-  color: #aaa;
-}
-
-/* BOTÓN INFO */
-#btn-info {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-/* MODAL */
+/* MODAL PERFIL */
 .modal {
   display: none;
   position: fixed;
   z-index: 1001;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(6px);
+
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-content {
-  background: rgba(255,255,255,0.05);
-  margin: 10% auto;
+  background: #1e293b;
   padding: 25px;
-  width: 300px;
+  width: 320px;
   border-radius: 15px;
 }
 
 .cerrar-modal {
   float: right;
-  font-size: 25px;
   cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
 }
 </style>
 </head>
 
 <body>
 
-<div id="btn-info">👤</div>
+<!-- FOTO -->
+<div id="btn-info">
+  <img src="img/ChristianP.png">
+</div>
 
 <header>
 🚀 Portafolio de Física Aplicada – Christian G. Pech Hu.
@@ -182,31 +193,37 @@ footer {
 <div class="container">
 <div class="projects">
 
+<!-- CALCULADORA -->
 <div class="project">
 <h2>Calculadora Física</h2>
-<p>Aplicación en Python para resolver ecuaciones físicas.</p>
-<img src="img/calculadora.png" class="project-img" id="img-calc">
-<a href="https://github.com/christianpech-hu/C-alculadora-Fisica" target="_blank" class="btn">
-Ver proyecto
-</a>
+<p>Aplicación en Python para resolver ecuaciones físicas clásicas, ondas, electromagnetismo y termodinamica.</p>
+
+<img src="img/calculadora.png" class="project-img" onclick="abrirGaleria('calc')">
+
+<a href="#" onclick="abrirVideo('video/calculadorafisica.mp4')" class="btn">Visualizar demo</a>
+<a href="https://github.com/christianpech-hu/C-alculadora-Fisica" target="_blank" class="btn">Visualizar código</a>
 </div>
 
+<!-- APLAUSOS -->
 <div class="project">
 <h2>Detector de Aplausos</h2>
-<p>Sistema que detecta sonidos y activa un mecanismo.</p>
-<img src="img/aplausos.png" class="project-img" id="img-aplausos">
-<a href="https://github.com/christianpech-hu/Detector-de-aplausos" target="_blank" class="btn">
-Ver proyecto
-</a>
+<p>Sistema electrónico que detecta sonido mediante sensor y activa un circuito automáticamente.</p>
+
+<img src="img/aplausos.png" class="project-img" onclick="abrirGaleria('aplausos')">
+
+<a href="#" onclick="abrirVideo('video/aplausos.mp4')" class="btn">Visualizar demo</a>
+<a href="https://github.com/christianpech-hu/Detector-de-aplausos" target="_blank" class="btn">Visualizar código</a>
 </div>
 
+<!-- FLOW -->
 <div class="project">
-<h2>Punto de ventas en FlowGorithm</h2>
-<p>Simulador de punto de venta con menú interactivo.</p>
-<img src="img/FlowGorithm.png" class="project-img" id="img-flow">
-<a href="https://github.com/christianpech-hu/Flowgorith" target="_blank" class="btn">
-Ver proyecto
-</a>
+<h2>FlowGorithm</h2>
+<p>Simulador de punto de venta con lógica de programación y menú interactivo.</p>
+
+<img src="img/FlowGorithm.png" class="project-img" onclick="abrirGaleria('flow')">
+
+<a href="#" onclick="abrirVideo('video/flowgorithm.mp4')" class="btn">Visualizar demo</a>
+<a href="https://github.com/christianpech-hu/Flowgorith" target="_blank" class="btn">Visualizar código</a>
 </div>
 
 </div>
@@ -218,11 +235,13 @@ Ver proyecto
 <span class="prev">&#10094;</span>
 <span class="next">&#10095;</span>
 
-<img id="img-grande" class="lightbox-img">
-<video id="video-grande" class="lightbox-img" controls style="display:none;"></video>
+<div class="lightbox-contenido">
+<img id="img-grande">
+<video id="video-grande" controls style="display:none;"></video>
+</div>
 </div>
 
-<!-- MODAL INFO -->
+<!-- MODAL -->
 <div id="modal-info" class="modal">
   <div class="modal-content">
     <span class="cerrar-modal">&times;</span>
@@ -230,7 +249,7 @@ Ver proyecto
     <p><strong>Nombre:</strong> Christian G. Pech Hu.</p>
     <p><strong>Área:</strong> Física aplicada y programación</p>
     <ul>
-      <li>Programación en Python</li>
+      <li>Python</li>
       <li>Física</li>
       <li>Electrónica</li>
     </ul>
@@ -241,117 +260,105 @@ Ver proyecto
 const galerias = {
   calc: [
     "img/calculadora.png",
-    "img/fisica%20clasica.png",
-    "img/oscilaciones%20y%20ondas.png",
+    "img/fisica clasica.png",
+    "img/oscilaciones y ondas.png",
     "img/electromagnetismo.png",
     "img/termodinamica.png"
   ],
-
   aplausos: [
     "img/aplausos.png",
     "img/aplausos2.png",
     "img/aplausos3.png",
-    "img/aplausos4.png",
-    "video/aplausos.mp4"
+    "img/aplausos4.png"
   ],
-
   flow: [
     "img/FlowGorithm.png",
-    "img/flow2.png",
-    "img/flow3.png"
+    "img/flow2.png"
   ]
 };
 
 let galeriaActual = [];
 let index = 0;
+let lightboxActivo = false;
 
 const lightbox = document.getElementById("lightbox");
 const imgGrande = document.getElementById("img-grande");
 const videoGrande = document.getElementById("video-grande");
 
-document.getElementById("img-calc").onclick = () => abrirGaleria("calc");
-document.getElementById("img-aplausos").onclick = () => abrirGaleria("aplausos");
-document.getElementById("img-flow").onclick = () => abrirGaleria("flow");
-
 function abrirGaleria(tipo) {
   galeriaActual = galerias[tipo];
   index = 0;
-  mostrarContenido();
-  lightbox.style.display = "block";
+  mostrarImagen();
+  lightbox.style.display = "flex";
+  lightboxActivo = true;
 }
 
-function mostrarContenido() {
-  const ruta = galeriaActual[index];
-
-  videoGrande.pause();
-  videoGrande.src = "";
-
-  if (ruta.endsWith(".mp4")) {
-    imgGrande.style.display = "none";
-    videoGrande.style.display = "block";
-    videoGrande.src = ruta;
-    videoGrande.load();
-  } else {
-    videoGrande.style.display = "none";
-    imgGrande.style.display = "block";
-    imgGrande.src = ruta;
-  }
+function mostrarImagen() {
+  videoGrande.style.display = "none";
+  imgGrande.style.display = "block";
+  imgGrande.src = galeriaActual[index];
 }
 
-function siguiente() {
-  index = (index + 1) % galeriaActual.length;
-  mostrarContenido();
+function abrirVideo(ruta) {
+  imgGrande.style.display = "none";
+  videoGrande.style.display = "block";
+  videoGrande.src = ruta;
+  videoGrande.load();
+  lightbox.style.display = "flex";
+  lightboxActivo = true;
 }
 
-function anterior() {
-  index = (index - 1 + galeriaActual.length) % galeriaActual.length;
-  mostrarContenido();
-}
-
-document.querySelector(".next").addEventListener("click", e => {
-  e.stopPropagation();
-  siguiente();
-});
-
-document.querySelector(".prev").addEventListener("click", e => {
-  e.stopPropagation();
-  anterior();
-});
-
-document.addEventListener("keydown", (e) => {
-  if (lightbox.style.display === "block") {
-    if (e.key === "ArrowRight") siguiente();
-    if (e.key === "ArrowLeft") anterior();
-    if (e.key === "Escape") {
-      lightbox.style.display = "none";
-      videoGrande.pause();
-    }
-  }
-});
-
-document.querySelector(".cerrar").onclick = () => {
+function cerrarLightbox() {
   lightbox.style.display = "none";
   videoGrande.pause();
+  lightboxActivo = false;
+}
+
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % galeriaActual.length;
+  mostrarImagen();
 };
+
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + galeriaActual.length) % galeriaActual.length;
+  mostrarImagen();
+};
+
+document.querySelector(".cerrar").onclick = cerrarLightbox;
 
 lightbox.onclick = (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = "none";
-    videoGrande.pause();
-  }
+  if (e.target === lightbox) cerrarLightbox();
 };
 
-// MODAL INFO
-const btnInfo = document.getElementById("btn-info");
-const modalInfo = document.getElementById("modal-info");
-const cerrarModal = document.querySelector(".cerrar-modal");
+document.addEventListener("keydown", (e) => {
+  if (!lightboxActivo) return;
 
-btnInfo.onclick = () => modalInfo.style.display = "block";
-cerrarModal.onclick = () => modalInfo.style.display = "none";
+  if (e.key === "ArrowRight") {
+    index = (index + 1) % galeriaActual.length;
+    mostrarImagen();
+  }
+
+  if (e.key === "ArrowLeft") {
+    index = (index - 1 + galeriaActual.length) % galeriaActual.length;
+    mostrarImagen();
+  }
+
+  if (e.key === "Escape") cerrarLightbox();
+});
+
+/* MODAL PERFIL */
+const btnInfo = document.getElementById("btn-info");
+const modal = document.getElementById("modal-info");
+
+btnInfo.onclick = () => modal.style.display = "flex";
+
+document.querySelector(".cerrar-modal").onclick = () => {
+  modal.style.display = "none";
+};
 
 window.onclick = (e) => {
-  if (e.target === modalInfo) {
-    modalInfo.style.display = "none";
+  if (e.target === modal) {
+    modal.style.display = "none";
   }
 };
 </script>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Portafolio Física Aplicada</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.project {
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.project h2 { color: #60a5fa; }
+.project p { color: #cbd5f5; }
+.project ul { color: #a5b4fc; }
+
+.project-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.project-img:hover { transform: scale(1.05); }
+
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover { transform: scale(1.05); }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-img {
+  display: block;
+  margin: 60px auto;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* BOTÓN INFO */
+#btn-info {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  background: rgba(255,255,255,0.05);
+  margin: 10% auto;
+  padding: 25px;
+  width: 300px;
+  border-radius: 15px;
+}
+
+.cerrar-modal {
+  float: right;
+  font-size: 25px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="btn-info">👤</div>
+
+<header>
+🚀 Portafolio de Física Aplicada – Christian G. Pech Hu.
+</header>
+
+<div class="container">
+<div class="projects">
+
+<div class="project">
+<h2>Calculadora Física</h2>
+<p>Aplicación en Python para resolver ecuaciones físicas.</p>
+<img src="img/calculadora.png" class="project-img" id="img-calc">
+<a href="#" class="btn">Ver proyecto</a>
+</div>
+
+<div class="project">
+<h2>Detector de Aplausos</h2>
+<p>Sistema que detecta sonidos y activa un mecanismo.</p>
+<img src="img/aplausos.png" class="project-img" id="img-aplausos">
+<a href="#" class="btn">Ver proyecto</a>
+</div>
+
+<div class="project">
+<h2>Punto de ventas en FlowGorithm</h2>
+<p>Simulador de punto de venta con menú interactivo.</p>
+<img src="img/FlowGorithm.png" class="project-img" id="img-flow">
+<a href="#" class="btn">Próximamente</a>
+</div>
+
+</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+<span class="cerrar">&times;</span>
+<span class="prev">&#10094;</span>
+<span class="next">&#10095;</span>
+
+<img id="img-grande" class="lightbox-img">
+<video id="video-grande" class="lightbox-img" controls style="display:none;"></video>
+</div>
+
+<!-- MODAL INFO -->
+<div id="modal-info" class="modal">
+  <div class="modal-content">
+    <span class="cerrar-modal">&times;</span>
+    <h2>👨‍💻 Sobre mí</h2>
+    <p><strong>Nombre:</strong> Christian G. Pech Hu.</p>
+    <p><strong>Área:</strong> Física aplicada y programación</p>
+    <ul>
+      <li>Programación en Python</li>
+      <li>Física</li>
+      <li>Electrónica</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const galerias = {
+  calc: [
+    "img/calculadora.png",
+    "img/fisica%20clasica.png",
+    "img/oscilaciones%20y%20ondas.png",
+    "img/electromagnetismo.png",
+    "img/termodinamica.png"
+  ],
+
+  aplausos: [
+    "img/aplausos.png",
+    "img/aplausos2.png",
+    "img/aplausos3.png",
+    "img/aplausos4.png",
+    "video/aplausos.mp4"
+  ],
+
+  flow: [
+    "img/FlowGorithm.png",
+    "img/flow2.png",
+    "img/flow3.png"
+  ]
+};
+
+let galeriaActual = [];
+let index = 0;
+
+const lightbox = document.getElementById("lightbox");
+const imgGrande = document.getElementById("img-grande");
+const videoGrande = document.getElementById("video-grande");
+
+document.getElementById("img-calc").onclick = () => abrirGaleria("calc");
+document.getElementById("img-aplausos").onclick = () => abrirGaleria("aplausos");
+document.getElementById("img-flow").onclick = () => abrirGaleria("flow");
+
+function abrirGaleria(tipo) {
+  galeriaActual = galerias[tipo];
+  index = 0;
+  mostrarContenido();
+  lightbox.style.display = "block";
+}
+
+function mostrarContenido() {
+  const ruta = galeriaActual[index];
+
+  videoGrande.pause();
+  videoGrande.src = "";
+
+  if (ruta.endsWith(".mp4")) {
+    imgGrande.style.display = "none";
+    videoGrande.style.display = "block";
+    videoGrande.src = ruta;
+    videoGrande.load();
+  } else {
+    videoGrande.style.display = "none";
+    imgGrande.style.display = "block";
+    imgGrande.src = ruta;
+  }
+}
+
+function siguiente() {
+  index = (index + 1) % galeriaActual.length;
+  mostrarContenido();
+}
+
+function anterior() {
+  index = (index - 1 + galeriaActual.length) % galeriaActual.length;
+  mostrarContenido();
+}
+
+document.querySelector(".next").addEventListener("click", e => {
+  e.stopPropagation();
+  siguiente();
+});
+
+document.querySelector(".prev").addEventListener("click", e => {
+  e.stopPropagation();
+  anterior();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (lightbox.style.display === "block") {
+    if (e.key === "ArrowRight") siguiente();
+    if (e.key === "ArrowLeft") anterior();
+    if (e.key === "Escape") {
+      lightbox.style.display = "none";
+      videoGrande.pause();
+    }
+  }
+});
+
+document.querySelector(".cerrar").onclick = () => {
+  lightbox.style.display = "none";
+  videoGrande.pause();
+};
+
+lightbox.onclick = (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
+    videoGrande.pause();
+  }
+};
+
+// MODAL INFO
+const btnInfo = document.getElementById("btn-info");
+const modalInfo = document.getElementById("modal-info");
+const cerrarModal = document.querySelector(".cerrar-modal");
+
+btnInfo.onclick = () => modalInfo.style.display = "block";
+cerrarModal.onclick = () => modalInfo.style.display = "none";
+
+window.onclick = (e) => {
+  if (e.target === modalInfo) {
+    modalInfo.style.display = "none";
+  }
+};
+</script>
+
+<footer>
+© 2026 - Christian G. Pech Hu.
+</footer>
+
+</body>
+</html>
